@@ -50,6 +50,8 @@ function affichageMeteo(temperature,humidite,tendance,pression){
     let spanHumidite = document.getElementById('humidite');
     let spanTendance = document.getElementById('tendance');
     let spanPression = document.getElementById('pression');
+    let divInfosRecupDonnees = document.getElementById('infosRecupDonnees');
+    divInfosRecupDonnees.style.display = "none";
     spanTemperature.innerText = temperature;
     spanHumidite.innerText = humidite;
     spanTendance.innerText = tendance;

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible">
+        <title>Requête asynchrone et promises</title>
+        <script src="xhr-github.js"></script>
+    </head>
+    <body>
+        <h1>XHR : natif javascript</h1>
+        <p>
+            Récuperer la liste des users de Github (les 30 premiers) sur https://api.github.com/users <br>
+            On enchaine 2 requetes XHR, la deuxième est dépendante de la première <br>
+            Dans la deuxième on affiche les repos du Xème inscrit sur github
+        </p>
+        <h2>Résultats des 30 premiers inscrits</h2>
+        <div id="resultatUsers"> 
+            
+        </div>
+        <h2 id="h2Repos"></h2>
+        <div id="resultatRepos"> 
+            
+        </div>
+    </body>
+</html>
