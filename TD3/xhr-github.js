@@ -67,7 +67,7 @@ let displayUserRepos = (user_id) => {
         })
         .then ( (userData) => { 
                 //On affiche le user repos
-            showUserRepos(param);
+            showUserRepos(userData);
         })
         .catch ( (errorMessage) => { 
             //Traiter le cas d'erreur
