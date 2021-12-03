@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible">
+        <title>Requête asynchrone - 1ere approche</title>
+        <link rel="stylesheet" href="spinner.css"/>
+        <script src="xhr-meteo-promise.js"></script>
+    </head>
+    <body>
+        <h1>XHR : promise javascript</h1>
+        <p>
+            Affichez les résultats en français <br>
+            Affichez les unités en système français <br>
+            Affichez les infos dans la pag HTML : température, humidité, tendance et pression 
+        </p>
+        <h2>Résultats</h2>
+        <div> 
+            <div id="infosRecupDonnees" style="text-align: center;">
+                <span>Récupération des données en cours</span><br>
+                <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+            </div>
+            <p>
+                <span id="temperature"></span><br>
+                <span id="humidite"></span><br>
+                <span id="tendance"></span><br>
+                <span id="pression"></span> 
+            </p>
+        </div>
+    </body>
+</html>
