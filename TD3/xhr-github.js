@@ -6,10 +6,10 @@
 /*
     Notes on peut afficher un date dans un meilleurs format
 */
+
 /**
  * Envoie une requête XHR
  * @param {string} urlSend = URL ou route de l'API
- * @param {function} success = fonction à appeler en cas de succès
  * @return : inutilisable
  */
  function sendXhrPromise(urlSend){
@@ -29,6 +29,7 @@
         })
     })
 }
+
 /**
  * On Recupere l'utilisateur que l'on souhaite
  * @param {int} uid 
@@ -39,18 +40,49 @@ let getListUsers = (uid) => {
         sendXhrPromise('https://api.github.com/users')
         .then ( response => {
             response.forEach(user => {
-                if(user.uid === uid){
+                if(user.id === uid){
                     resolve(user);
                 }else{
                     reject("Cet ID n'existe pas");
                 }
-            });
-            
+            }); 
         })
         .catch ( error => {
-            console.log("Erreur : pas d'accès au serveur" + error)
             reject(error);
         })
+    })
+}
+
+/**
+ * 
+ * @param {*} user 
+ * @returns : inutilisable
+ */
+let showUserInfo = (user) => {
+    return new Promise( function(resolve,reject){
+        if(user.repos_url){
+            //AddUserInfoInHTML(user)
+            resolve(user.repos_url);
+        }
+        else{
+            reject("L'utilisateur n'a pas de lien de repos");
+        }
+    })
+}
+
+/**
+ * Ici on va appeler l'api GITHUB et en fonction du resultat on appelera la fonction d'affichage
+ * @param {string} userRepoLink 
+ * @returns : vide
+ */
+let showUserRepos = (userRepoLink) => {
+    sendXhrPromise(userRepoLink)
+    .then ( repos => {
+        //AddUserRepoInHTML(repos)
+        console.log(response);
+    })
+    .catch ( error => {
+        console.log(error)    
     })
 }
 
@@ -61,18 +93,17 @@ let getListUsers = (uid) => {
  */
 let displayUserRepos = (user_id) => {
     getListUsers(user_id)
-        .then ( (user) => { //Requete : liste des users
-                //Afficher les infos du user
-            return showUserInfo(user);
-        })
-        .then ( (userData) => { 
-                //On affiche le user repos
-            showUserRepos(userData);
-        })
-        .catch ( (errorMessage) => { 
-            //Traiter le cas d'erreur
-
-        })
+    .then ( (user) => { //Requete : liste des users
+        //Afficher les infos du user        
+        return showUserInfo(user);
+    })
+    .then ( (userRepoLink) => { 
+        //On affiche le user repos
+        showUserRepos(userRepoLink);
+    })
+    .catch ( (errorMessage) => { 
+        console.log(errorMessage);
+    })
 }
 
 // -------------- Main
