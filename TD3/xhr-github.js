@@ -39,29 +39,73 @@ let getListUsers = (uid) => {
     return new Promise ( (resolve, reject) => {
         sendXhrPromise('https://api.github.com/users')
         .then ( response => {
+            // Cette variable permet de traiter le cas où on entre un mauvais uid
+            let userFinded = false;
             response.forEach(user => {
                 if(user.id === uid){
+                    userFinded = true;
                     resolve(user);
-                }else{
-                    reject("Cet ID n'existe pas");
-                }
+                } 
             }); 
+            if(!userFinded){
+                reject("Cet ID n'existe pas");
+            }
         })
         .catch ( error => {
-            reject(error);
+            console.log(error)
         })
     })
 }
 
 /**
- * 
+ * On inscrit les données de l'utilisateur dans la div prévu à cet effet
+ * @param {JSON} user 
+ * @returns : vide
+ */
+let AddUserInfoInHTML = (user) => {
+    let divResultatUser = document.getElementById('resultatUser');
+        htmlAsString = "<div class=\"col-6 text-center mt-4\"><h3> username : " + user.login + "</h3>";
+        htmlAsString += "<h3> UID : " + user.id + "</h3></div>";
+        htmlAsString += "<div class=\"col-6 text-center\"><img src="+user.avatar_url + " height=200px width=auto><br></div>";
+        divResultatUser.innerHTML = htmlAsString;
+}
+
+let changeDateFormat = (dateAsString) => {
+    let date = new Date(dateAsString);
+    return date.toDateString();
+}
+
+/**
+ * On remplit le tableau avec les différent repos
+ * @param {JSON} repos 
+ */
+let AddUserRepoInHTML  = (repos) => {
+    //Récupération du tableau
+    let tbody = document.getElementById("tbodyId");
+    tbody.innerHTML="";
+    repos.forEach(repo => {
+        //Ajout d'une ligne dans le tableau concernant les infos du repo
+        let ajout = "";
+        ajout+= "<tr>";
+            ajout+= "<th scope=\"row\">" + repo.name + "</th>";
+            ajout+= "<td><a href=\""+repo.html_url+"\">"+repo.html_url+"</a></td>";
+            ajout+= "<td>"+changeDateFormat(repo.updated_at)+"</td>";
+            ajout+= "<td>"+repo.description+"</td>";
+            ajout+= "<td>"+repo.visibility+"</td>";
+        ajout+="</tr>";
+        tbody.innerHTML+= ajout;
+    });
+}
+
+/**
+ * Appel d'une fonction d'affichage des informations de l'utilisateur
  * @param {*} user 
  * @returns : inutilisable
  */
 let showUserInfo = (user) => {
     return new Promise( function(resolve,reject){
         if(user.repos_url){
-            //AddUserInfoInHTML(user)
+            AddUserInfoInHTML(user)
             resolve(user.repos_url);
         }
         else{
@@ -71,15 +115,14 @@ let showUserInfo = (user) => {
 }
 
 /**
- * Ici on va appeler l'api GITHUB et en fonction du resultat on appelera la fonction d'affichage
+ * Envoie d'une requete et en fonction du resultat on appelera la fonction d'affichage
  * @param {string} userRepoLink 
  * @returns : vide
  */
 let showUserRepos = (userRepoLink) => {
     sendXhrPromise(userRepoLink)
     .then ( repos => {
-        //AddUserRepoInHTML(repos)
-        console.log(response);
+        AddUserRepoInHTML(repos)
     })
     .catch ( error => {
         console.log(error)    
@@ -87,7 +130,7 @@ let showUserRepos = (userRepoLink) => {
 }
 
 /**
- * On affiche des repos d'un utilisateur
+ * On affiche les repos d'un utilisateur
  * @param {int} user_id 
  * @return : vide
  */
@@ -112,6 +155,6 @@ document.addEventListener("DOMContentLoaded", function(){
 // On attend que le DOM soit chargé
 
 // processus général
-    let user_id = 1;
+    let user_id = 2;
     displayUserRepos(user_id)
 })
