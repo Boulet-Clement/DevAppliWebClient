@@ -64,6 +64,7 @@ let getListUsers = (uid) => {
  */
 let AddUserInfoInHTML = (user) => {
     let divResultatUser = document.getElementById('resultatUser');
+        divResultatUser.innerHTML = "";
         htmlAsString = "<div class=\"col-6 text-center mt-4\"><h3> username : " + user.login + "</h3>";
         htmlAsString += "<h3> UID : " + user.id + "</h3></div>";
         htmlAsString += "<div class=\"col-6 text-center\"><img src="+user.avatar_url + " height=200px width=auto><br></div>";
@@ -155,6 +156,12 @@ document.addEventListener("DOMContentLoaded", function(){
 // On attend que le DOM soit chargé
 
 // processus général
-    let user_id = 2;
+    let user_id = 1;
     displayUserRepos(user_id)
+
+    let searchBtn = document.getElementById("button-addon2");
+    let searchInput = document.getElementById("inputSearch");
+    searchBtn.addEventListener("click", function(){
+        displayUserRepos(parseInt(searchInput.value))
+    })
 })
