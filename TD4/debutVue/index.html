@@ -1,0 +1,69 @@
+<html>
+
+<head>
+    <title>Premiere page Vue.js</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+    <div class="container" id="container">
+        <h1 class="mt-4" v-bind:title="infoDate">Premiere page Vue</h1>
+        <p> {{ message }} </p>
+        <input  type="text" 
+                id="saisietest" 
+                v-model="message">
+        <p>La valeur de l'input ci dessus est : {{ message }}</p>
+        <h3>Liste des pénoms</h3>
+        <ul>
+            <li v-for="name in names"> {{ name }}</li>
+        </ul>
+        <input type="text" id="addName" v-model="newName">
+        <button v-on:click="addName">Ajouter</button>
+        <h2 v-bind:class="className">Titre avec une classe dynamique</h2>
+        <button v-on:click="changeTitleColor">changer la couleur du titre</button>
+
+        <div v-if="debug">
+            <h2 >Debuggage</h2>
+            <p>afficher le contenu d'une variable avec { {  } }</p>
+            <p> 
+                className = {{ className }}<br>
+                names = {{ names }} <br>
+                infoDate = {{ infoDate }}
+            </p>
+        </div>
+    </div>
+    <script>
+        const myVueApp = {
+            data() {
+                return {
+                    message:"Hello world",
+                    infoDate: "vous consultez cette page le : " + 
+                        new Date().toLocaleString(),
+                    names: ["Jules François","François Jules","Léo Pold"],   
+                    newName: "",
+                    className: "text-danger",
+                    debug: false            
+                }
+            },
+            methods: {
+                addName(){
+                    this.names.push(this.newName)
+                    this.newName = "";
+                },
+                changeTitleColor(){
+                    if (this.className == "text-danger"){
+                        this.className="text-primary"
+                    }else if(this.className == "text-primary"){
+                        this.className="text-danger"
+                    }
+                }
+            }
+        }
+        Vue.createApp(myVueApp).mount('#container');
+    </script>
+</body>
+
+</html>
