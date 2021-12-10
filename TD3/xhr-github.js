@@ -79,6 +79,7 @@ let changeDateFormat = (dateAsString) => {
 /**
  * On remplit le tableau avec les différent repos
  * @param {JSON} repos 
+ * @returns : inutilisable
  */
 let AddUserRepoInHTML  = (repos) => {
     //Récupération du tableau
