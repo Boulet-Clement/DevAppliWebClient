@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Communication avec les composants</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <div id="app">
+        <h1>Communication avec le composant</h1>
+        
+        <h2>Ajuster une icone de volume à l'aide d'un component</h2>
+
+        <label>Sound level :</label>
+        <input type="number" min="0" max="3"
+        v-model.number="soundLevel"/>
+
+        <p v-if="newUserMood">
+            Vous vous sentez plutôt : {{ newUserMood }}
+        </p>
+
+        <sound-icon ref="soundmodule" 
+                    :level="soundLevel" 
+                    v-on:couper-volume="soundLevel = 0;"
+                    v-on:max-volume="soundLevel = 3;"
+                    v-on:new-mood="setMood">
+        </sound-icon>
+    </div>
+
+    <script src="./script.js">
+    </script>
+</body>
+
+</html>
