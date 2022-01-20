@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2e composant</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <div id="app">
+        <h1 class="ms-2">Utiliser les composants</h1>
+
+        <h3>Une liste de courses</h3>
+        <my-list-item finished="false" priority="5"> un paquet de riz </my-list-item>
+        <my-list-item finished="true" priority="2"> deux paquets de pâtes </my-list-item>
+        <my-list-item finished="false" priority="3"> du sirop </my-list-item>
+        <my-list-item finished="true" priority="1"> une plaquette de chocolat </my-list-item>
+        <my-list-item finished="false" priority="4"> de l'eau </my-list-item>
+
+        <h3>Liste des tâches avec template</h3>
+        <task-list></task-list>
+
+    </div>
+
+    <script src="./script.js">
+    </script>
+</body>
+
+</html>
