@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO List</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <div id="app">
+        <h1 class="ms-2">Gérer une liste de tâches</h1>
+
+        <label class="ms-4">Ajouter une nouvelle tâche</label>
+        <input v-model="newTaskName" type="text" placeholder="Nom" class="mx-2">
+        <button @click="addTask" class="btn btn-primary">Ajouter</button>
+        
+        <h2 class="ms-4">Ma liste de tâches :</h2>
+        <div class="d-flex flex-col w-100">
+            <div class="w-50">
+                <h3 class="w-100 d-flex justify-content-center">Tâches A FAIRE</h3>
+                <div class="card w-100 p-2 my-2" v-for="task in todoTasks">
+                    <p class="w-100 d-flex align-items-center justify-content-center">{{ task.name }} - Tâche à faire
+                    </p>
+                    <button class="btn btn-success" @click="task.done = !task.done">Tâche réalisée</button>
+                </div>
+            </div>
+            <div class="w-50">
+                <h3 class="d-flex w-100 justify-content-around">Tâches FAITES
+                    <button @click="showCompleted = !showCompleted" class="btn btn-primary">{{ showCompleted ? "Masquer"
+                        : "Afficher" }} les tâches complétées</button>
+                </h3>
+                <div class="w-100" v-if="showCompleted">
+                    <div class="card w-100 p-2 my-2" v-for="task in completedTasks">
+                        <p class="w-100 d-flex align-items-center justify-content-center">{{ task.name }} - Tâche faite
+                        </p>
+                        <button class="btn btn-danger" @click="task.done = !task.done">Annuler la réalisation de la
+                            tâche</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const MyVueApp = {
+            data() {
+                return {
+                    tasks: [
+                        {
+                            name: 'Tâche 1',
+                            done: false
+                        },
+                        {
+                            name: 'Tâche 2',
+                            done: false
+                        },
+                        {
+                            name: 'Tâche 3',
+                            done: false
+                        },
+                        {
+                            name: 'Tâche 4',
+                            done: false
+                        },
+                        {
+                            name: 'Tâche 5',
+                            done: false
+                        },
+                        {
+                            name: 'Tâche 6',
+                            done: false
+                        },
+                        {
+                            name: 'Tâche 7',
+                            done: false
+                        },
+                        {
+                            name: 'Tâche 8',
+                            done: false
+                        },
+                        {
+                            name: 'Tâche 9',
+                            done: false
+                        },
+                        {
+                            name: 'Tâche 10',
+                            done: false
+                        },
+                        {
+                            name: 'Tâche 11',
+                            done: false
+                        },
+                        {
+                            name: 'Tâche 12',
+                            done: false
+                        },
+                        {
+                            name: 'Tâche 13',
+                            done: false
+                        },
+                        {
+                            name: 'Tâche 14',
+                            done: false
+                        },
+                        {
+                            name: 'Tâche 15',
+                            done: false
+                        },
+                        {
+                            name: 'Tâche 16',
+                            done: false
+                        },
+                        {
+                            name: 'Tâche 17',
+                            done: false
+                        },
+                        {
+                            name: 'Tâche 18',
+                            done: false
+                        },
+                        {
+                            name: 'Tâche 19',
+                            done: false
+                        },
+                        {
+                            name: 'Tâche 20',
+                            done: false
+                        },
+                        {
+                            name: 'Tâche 21',
+                            done: false
+                        },
+                        {
+                            name: 'Tâche 22',
+                            done: false
+                        },
+                        {
+                            name: 'Tâche 23',
+                            done: false
+                        },
+                        {
+                            name: 'Tâche 24',
+                            done: false
+                        },
+                        {
+                            name: 'Tâche 25',
+                            done: false
+                        },
+                        {
+                            name: 'Tâche 26',
+                            done: false
+                        },
+                        {
+                            name: 'Tâche 27',
+                            done: false
+                        },
+                        {
+                            name: 'Tâche 28',
+                            done: false
+                        },
+                        {
+                            name: 'Tâche 29',
+                            done: false
+                        }
+                    ],
+                    showCompleted: true,
+                    newTaskName: null
+                }
+            },
+            computed: {
+                completedTasks() {
+                    return this.tasks.filter(task => task.done)
+                },
+                todoTasks() {
+                    return this.tasks.filter(task => !task.done)
+                }
+            },
+            methods: {
+                addTask() {
+                    this.tasks.push({
+                        name: this.newTaskName,
+                        done: false
+                    })
+                    this.newTaskName = ''
+                }
+            }
+        }
+        Vue.createApp(MyVueApp).mount('#app')
+    </script>
+</body>
+
+</html>
