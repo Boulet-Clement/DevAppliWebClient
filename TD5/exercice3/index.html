@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO List</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <div id="container">
+        <h1>Mon premier composant</h1>
+        <p>Etat de Vue.js : {{ vueStatus }}</p>
+
+        <button-counter></button-counter>
+
+        <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates ducimus, commodi corporis quaerat
+            aliquid architecto est voluptate totam nobis. Sit repellendus minima quibusdam atque ipsum accusamus debitis
+            enim error pariatur.
+        </p>
+
+        <button-counter></button-counter>
+    </div>
+
+    <script>
+        //Il faut créer l'instance de vue avant de déclarer les components
+        const MyVueApp = Vue.createApp({
+            data() {
+                return {
+                    vueStatus: "salut"
+                }
+            },
+            computed: {},
+            methods: {
+
+            }
+        })
+
+        //On définit un nouveau composant global appelé button-counter
+        MyVueApp.component('button-counter', {
+            data() {
+                return {
+                    count: 0
+                }
+            },
+            template: `
+                <button class="btn-primary" v-on:click="count++">
+                    Vous m'avez cliqué {{count}} fois
+                </button>
+            `
+        })
+
+        MyVueApp.mount('#container')
+    </script>
+</body>
+
+</html>
