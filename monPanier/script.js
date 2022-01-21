@@ -7,11 +7,11 @@ const MyVueApp = Vue.createApp({
 
 
 
-MyVueApp.component('article',{
+MyVueApp.component('panier-item',{
     template: `
     <tr>
         <th scope="row" style="height: 100px; width: 100px; background-color: black;"></th>
-        <td>Enceinte alexa <br/><span class="small">troisième génération, socle de recharge non inclus</span> </td>
+        <td>{{ this.intitule }}<br/><span class="small">troisième génération, socle de recharge non inclus</span> </td>
         
         <td>
             <button type="button" class="btn btn-light">-</button>
@@ -44,19 +44,41 @@ MyVueApp.component('panier', {
             </tr>
             </thead>
             <tbody>
-                {{ article }}
+                <panier-item v-for="article in articles">
+                    {{ article }}
+                </panier-item>
+                
             </tbody>
         </table>
     `,
     data() {
         return {
-            articles: [
-                "Eat",
-                "Go to the bank",
-                "Go to the shop",
-                "Got to work"
-            ]
+            monnaie : '€',
+            articles: [{
+                image: 'USA',
+                intitule: 'Enceinte Alexa',
+                description: 'troisième génération, socle non fournis',
+                quantite: 1,
+                prix: 24.50
+            },
+            {
+                image: 'USA',
+                intitule: 'Image bleue',
+                description: 'Pas très utile',
+                quantite: 2,
+                prix:0.70
+            }],
+            total: 0,
         }
+    },
+    computed:{
+        total(){
+            let total = 0;
+            this.panier.forEach(article => {
+                total += article.prix * article.quantite
+            });
+            return total;
+        },
     }
 })
 
