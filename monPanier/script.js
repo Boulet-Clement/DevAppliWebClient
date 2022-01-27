@@ -14,7 +14,14 @@ const MyVueApp = Vue.createApp({
                 "intitule": 'Image bleue',
                 "description": 'Pas très utile',
                 "quantite": "2",
-                "prix":"0.70"
+                "prix":"1.00"
+            },
+            {
+                "color": 'red',
+                "intitule": 'Image rouge',
+                "description": 'Pas très utile non plus',
+                "quantite": "5",
+                "prix":"0.50"
             }],
         }
     },
