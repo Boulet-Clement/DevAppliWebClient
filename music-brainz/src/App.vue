@@ -2,16 +2,19 @@
   <div>
     <img alt="Vue logo" src="./assets/logo.png" />
     <HelloWorld msg="Welcome to Your Vue.js App" />
+    <Artiste msg="Jacques Brel" />
   </div>
 </template>
 
 <script>
 import HelloWorld from "./components/HelloWorld.vue";
+import Artiste from "./components/Artiste.vue";
 
 export default {
   name: "App",
   components: {
     HelloWorld,
+    Artiste,
   },
 };
 </script>
