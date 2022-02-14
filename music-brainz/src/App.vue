@@ -1,20 +1,17 @@
 <template>
   <div>
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
-    <Artiste msg="Jacques Brel" />
+    <router-view />
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
-import Artiste from "./components/Artiste.vue";
+//import HelloWorld from "./components/HelloWorld.vue";
+//import Recherche from "./components/Recherche.vue";
+
 
 export default {
   name: "App",
   components: {
-    HelloWorld,
-    Artiste,
   },
 };
 </script>
