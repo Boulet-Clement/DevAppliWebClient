@@ -5,12 +5,14 @@
 </template>
 
 <script>
-//import HelloWorld from "./components/HelloWorld.vue";
-//import Recherche from "./components/Recherche.vue";
-
 
 export default {
   name: "App",
+  data: function () {
+    return {
+      results : []
+    }
+  },
   components: {
   },
 };
