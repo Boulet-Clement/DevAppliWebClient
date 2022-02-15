@@ -15,6 +15,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'RechercheComponent',
   data: function () {
@@ -28,11 +30,39 @@ export default {
       // On log les entrées
       console.log(this.search)
       console.log(this.selectedType)
+      this.sendRequest()
     },
     onChangeType: function(e){
         this.selectedType = e.target.value;
         console.log(this.selectedType)
     },
+    sendRequest(){
+      let apiLink = '';
+      if (this.selectedType === 1){// Artiste 
+        console.log("on est dans le lien 1")
+        apiLink = `https://musicbrainz.org/ws/2/artist?query=artist:${this.search}%20AND%20type:person&limit=10&fmt=json`
+      }else if (this.selectedType === 2){ // Titre
+        apiLink = ''
+      }else{
+        throw new Error
+      } 
+      axios.get(apiLink , {
+            headers: {
+            "Content-Type": "application/json",
+            "User-Agent" : "MyMusicBrainz/1.2.0 ( clement60.b@gmail.com )",
+            }
+        })
+        .then(response => {
+            this.datas = response.data
+            this.$parent.$parent.$parent.results = response.data // Pas très propre, si on doit réutiliser le composant
+            console.log(this.$parent.$parent.$parent.results);
+            this.$router.push({name:'Resultats'}) // Plutot redirect sur Resultats
+            
+        })
+       .catch(function (error) {
+             console.log(error);
+        });
+    }
   },
 }
 </script>
