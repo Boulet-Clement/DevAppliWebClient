@@ -40,7 +40,7 @@ export default {
       let apiLink = '';
       if (this.selectedType === 1){// Artiste 
         console.log("on est dans le lien 1")
-        apiLink = `https://musicbrainz.org/ws/2/artist?query=artist:${this.search}%20AND%20type:person&limit=10&fmt=json`
+        apiLink = `https://musicbrainz.org/ws/2/artist?query=artist:${this.search}%20AND%20type:person&limit=12&fmt=json`
       }else if (this.selectedType === 2){ // Titre
         apiLink = ''
       }else{
