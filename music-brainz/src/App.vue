@@ -10,7 +10,8 @@ export default {
   name: "App",
   data: function () {
     return {
-      results : []
+      results : [],
+      clickedArtist:[]
     }
   },
   components: {
