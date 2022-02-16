@@ -1,9 +1,8 @@
 <template>
   <div>
-    <img alt="Vue logo" src="../assets/logo.png" />
+    
     <div id="nav-component">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/artiste">Artiste</router-link>
+      <router-link class="btn btn-primary mb-3" to="/">Nouvelle recherche</router-link>
     </div>
     <router-view />
   </div>
