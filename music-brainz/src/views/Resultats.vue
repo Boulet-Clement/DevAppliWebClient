@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-      <NavComponent/>
       <div class="row">
         <ResultatsComponent v-for="artist in resultats.artists" :key="artist" :artist="artist" class="col-3 mt-3 mb-3" />
       </div>
@@ -9,13 +8,12 @@
 
 <script>
 
-import NavComponent from "../components/NavComponent.vue";
+
 import ResultatsComponent from "../components/ResultatsComponent.vue";
 
 export default {
   name: "Resultats",
   components: {
-    NavComponent,
     ResultatsComponent,
   },
   data: function () {

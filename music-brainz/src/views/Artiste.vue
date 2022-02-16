@@ -1,21 +1,17 @@
 <template>
   <div>
-    
     <ArtisteComponent  :artist=this.artist /> 
-    <NavComponent />
   </div>
 </template>
 
 <script>
 
 import ArtisteComponent from "../components/ArtisteComponent.vue";
-import NavComponent from "../components/NavComponent.vue";
 
 export default {
   name: "Artiste",
   components: {
     ArtisteComponent,
-    NavComponent,
   },
   data: function () {
       return {
