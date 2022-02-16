@@ -2,11 +2,10 @@
     <div id="resultats-component">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">{{ artists.name }}</h5>
+          <h5 class="card-title">{{ artist.name }}</h5>
           <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="card-link">Card link</a>
-          <a href="#" class="card-link">Another link</a>
+          <button class="btn btn-primary" @click="handleClickViewMore(artist)">Voir plus</button>
         </div>
       </div>  
     </div>
@@ -15,7 +14,13 @@
 <script>
 export default {
   name: 'ResultatsComponent',
-  props: ['artists'],
+  props: ['artist'],
+  methods: {
+    handleClickViewMore(artist){
+      this.$parent.$parent.$parent.clickedArtist = artist
+      this.$router.push({name:'Artiste'})
+    }
+  },
 }
 
 </script>
