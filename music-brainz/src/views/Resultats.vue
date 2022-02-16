@@ -2,7 +2,7 @@
   <div class="container">
       <NavComponent/>
       <div class="row">
-        <ResultatsComponent v-for="artist in resultats.artists" :key="artist" :artists="artist" class="col-3 mt-3 mb-3" />
+        <ResultatsComponent v-for="artist in resultats.artists" :key="artist" :artist="artist" class="col-3 mt-3 mb-3" />
       </div>
   </div>
 </template>
@@ -12,7 +12,6 @@
 import NavComponent from "../components/NavComponent.vue";
 import ResultatsComponent from "../components/ResultatsComponent.vue";
 
-//v-for="artist in resultats.artists" :key="artist"
 export default {
   name: "Resultats",
   components: {
@@ -34,14 +33,3 @@ export default {
   }
 };
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
