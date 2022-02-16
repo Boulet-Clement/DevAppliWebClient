@@ -1,32 +1,35 @@
 <template>
   <div>
-      <NavComponent/>
-      <ArtisteComponent  msg="Jean"/>
+    
+    <ArtisteComponent  :artist=this.artist /> 
+    <NavComponent />
   </div>
 </template>
 
 <script>
 
-import NavComponent from "../components/NavComponent.vue";
 import ArtisteComponent from "../components/ArtisteComponent.vue";
-
+import NavComponent from "../components/NavComponent.vue";
 
 export default {
   name: "Artiste",
   components: {
-    NavComponent,
     ArtisteComponent,
+    NavComponent,
   },
+  data: function () {
+      return {
+      artist : [],
+    }
+  },
+  created(){
+      this.artist = this.$parent.$parent.clickedArtist
+      //console.log(this.resultats.artists[0].name)
+      console.log(this.artist)
+      if (this.artist == null){//Si le tableau est vide : rediriger vers la page de recherche
+        this.$router.push({name:'Home'})
+    }
+  }
+
 };
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
