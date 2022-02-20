@@ -12,6 +12,7 @@ export default {
   name: "App",
   data: function () {
     return {
+      type : 1,
       results : [],
       clickedArtist:[]
     }
