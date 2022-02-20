@@ -38,11 +38,10 @@ export default {
     },
     sendRequest(){
       let apiLink = '';
-      if (this.selectedType === 1){// Artiste 
-        console.log("on est dans le lien 1")
+      if (this.selectedType == 1){// Artiste 
         apiLink = `https://musicbrainz.org/ws/2/artist?query=artist:${this.search}%20AND%20type:person&limit=12&fmt=json`
-      }else if (this.selectedType === 2){ // Titre
-        apiLink = ''
+      }else if (this.selectedType == 2){ // Titre
+        apiLink = `https://musicbrainz.org/ws/2/artist?query=artist:${this.search}%20AND%20type:person&limit=12&fmt=json`
       }else{
         throw new Error
       } 
@@ -54,10 +53,10 @@ export default {
         })
         .then(response => {
             this.datas = response.data
+            this.$parent.$parent.$parent.type = this.selectedType
             this.$parent.$parent.$parent.results = response.data // Pas très propre, si on doit réutiliser le composant
             console.log(this.$parent.$parent.$parent.results);
-            this.$router.push({name:'Resultats'}) // Plutot redirect sur Resultats
-            
+            this.$router.push({name:'Resultats'})            
         })
        .catch(function (error) {
              console.log(error);
