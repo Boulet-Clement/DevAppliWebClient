@@ -41,7 +41,7 @@ export default {
       if (this.selectedType == 1){// Artiste 
         apiLink = `https://musicbrainz.org/ws/2/artist?query=artist:${this.search}%20AND%20type:person&limit=12&fmt=json`
       }else if (this.selectedType == 2){ // Titre
-        apiLink = `https://musicbrainz.org/ws/2/artist?query=artist:${this.search}%20AND%20type:person&limit=12&fmt=json`
+        apiLink = `https://musicbrainz.org/ws/2/recording?query=${this.search}&limit=10&fmt=json`
       }else{
         throw new Error
       } 
