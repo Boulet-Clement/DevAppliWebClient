@@ -17,8 +17,8 @@ export default {
   props: ['titre'],
   methods: {
     handleClickViewMore(titre){
-      this.$parent.$parent.$parent.clickedtitre = titre
-      //this.$router.push({name:'Titre'})
+      this.$parent.$parent.$parent.clickedTitle = titre
+      this.$router.push({name:'Titre'})
     }
   },
   data: function () {
