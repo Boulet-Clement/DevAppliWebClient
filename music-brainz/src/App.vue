@@ -14,7 +14,8 @@ export default {
     return {
       type : 1,
       results : [],
-      clickedArtist:[]
+      clickedArtist:[],
+      clickedTitle:[]
     }
   },
   components: {
