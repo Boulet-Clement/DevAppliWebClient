@@ -1,9 +1,11 @@
 import { createWebHistory, createRouter } from "vue-router";
 import Artiste from "../views/Artiste.vue";
+import Resultats from "../views/Resultats.vue";
 import Titre from "../views/Titre.vue";
 import Home from "../views/Home.vue";
 import NoResult from "../views/NoResult.vue";
-import Resultats from "../views/Resultats.vue";
+import NotFound from "../views/NotFound.vue";
+
 
 const routes = [
     {
@@ -31,6 +33,11 @@ const routes = [
         name: "NoResult",
         component: NoResult,
     },
+    {
+        path: '/:pathMatch(.*)',
+        name: 'NotFound',
+        component: NotFound
+    }
 ]
 
 const router = createRouter({
